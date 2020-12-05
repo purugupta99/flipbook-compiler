@@ -1,0 +1,4 @@
+exec ( for(1, 4) initImage(0, 100, 50, 50) scale(1.1) shift(5, 0) kid.png )
+exec ( for(5, 8) initImage(40, 100, 50, 75) scale(1.1) shift(5, 0) young_adult.png )
+exec ( for(9, 12) initImage(80, 100, 50, 50) scale(1.1) shift(5, 0) adult.png )
+exec ( for(13, 16) initImage(120, 100, 50, 50) scale(1.1) shift(5, 0) old.png )

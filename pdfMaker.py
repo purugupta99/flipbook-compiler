@@ -6,21 +6,33 @@ import os
 class PDFMaker():
 
     def __init__(self):
+        '''
+            Initialize PDF Maker Class
+        '''
         self.statements = []
         self.instructions = {}
         self.maxPage = 0
         self.imageDir = "./images/"
         
     def add_statement(self, statementNode):
+        '''
+            Add statement nodes to statement list
+        '''
         self.statements.append(statementNode)
 
     def print_instructions(self):
+        '''
+            Print pdf generation instructions for debug
+        '''
         for i in range(1, self.maxPage+1):
             print("\nPage Num: " + str(i))
             for instruction in self.instructions[i]:
                 print(instruction)
 
     def generate_instructions(self):
+        '''
+            Generate pdf generation instructions for each page
+        '''
         for statement in self.statements:
             valList = statement.eval()
 
@@ -46,6 +58,9 @@ class PDFMaker():
                 szY = szY * scaleVal
 
     def generate_PDF(self, filename):
+        '''
+            Generate PDF from the instructions created
+        '''
         pdfMerger = PdfFileMerger()
         
         for i in range(1, self.maxPage+1):

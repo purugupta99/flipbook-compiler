@@ -1,3 +1,0 @@
-exec ( for(1, 10) initImage(0, 0, 50, 50) scale(1.15) shift(5, 5) stone.png )
-exec ( for(5, 10) initImage(100, 100, 50, 50) scale(1.25) shift(5, 5) stone.png )
-exec ( for(7, 13) initImage(200, 200, 50, 50) scale(1.35) shift(5, 5) stone.png )

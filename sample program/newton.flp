@@ -1,0 +1,2 @@
+exec ( for(1, 12) initImage(10, 100, 200, 200) scale(1.0) shift(0, 0) tree.png )
+exec ( for(1, 12) initImage(120, 125, 15, 15) scale(1.0) shift(0, 8) apple.png )
