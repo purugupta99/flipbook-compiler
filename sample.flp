@@ -1,0 +1,1 @@
+exec ( for(1, 10) initImage(0, 0, 50, 50) scale(1.15) shift(5, 5) stone.jpg )
