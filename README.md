@@ -33,5 +33,5 @@ exec ( for(1, 4) initImage(0, 100, 50, 50) scale(1.1) shift(5, 0) kid.png )
 ## Sample Outputs(Converted to gif from pdf for better visualization)
 
 Human Evolution | Newton's Apple
-- | -
+:--------------:|:--------------:
 <img src="./output/evolution.gif" width="250" height="350"/> | <img src="./output/newton.gif" width="250" height="350"/>
