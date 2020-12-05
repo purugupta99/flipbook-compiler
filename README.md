@@ -11,17 +11,18 @@ There are 4 major modules in this project - lexerGenerator, parserGenerator, pdf
 **run.py** is the main engine which connects all the above mentioned components to generate the pdf flipbook.
 
 ## Packages used
-- rply
-- pyPDF2
-- fpdf
+- **rply** - for lexing and parsing of flp files
+- **pyPDF2** - to merge pdf pages into single pdf file
+- **fpdf** - to draw images on pdf pages
 
-## How to run:-
+## How to run
 - Install dependencies - `pip3 install -r requirements.txt`
 - Store the images to be used in `images` directory
-- To start the script - `python3 run.py <flp file> <output pdf>`
+- To start the script - `python3 run.py <flp file> <output pdf file>`
 
 ## Statement Syntax
 **exec ( for(1, 4) initImage(0, 100, 50, 50) scale(1.1) shift(5, 0) kid.png )**
+
 ### Method Syntax
 - `exec` - parent method which executes the statement written inside it
 - `for(startIdx, endIdx)` - defines the number of pages the images should be printed on
@@ -30,7 +31,7 @@ There are 4 major modules in this project - lexerGenerator, parserGenerator, pdf
 - `shift(x, y)` - shifts the image from initial position on each subsequent page
 - `<imageFile>` - defines the image to be used for current statement
 
-## Sample Outputs(Converted to gif from pdf for better visualization)
+## Sample Outputs (Converted to gif from pdf for better visualization)
 
 Human Evolution | Newton's Apple
 :--------------:|:--------------:
