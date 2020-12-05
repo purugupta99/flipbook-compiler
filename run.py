@@ -22,4 +22,9 @@ with open(input_file) as f:
         parser = parserObj.make_parser()
         node = parser.parse(tokens)
 
+        print(node.eval())
         pdfMaker.add_statement(node)
+
+    pdfMaker.generate_instructions()
+    # pdfMaker.print_instructions()
+    pdfMaker.generate_PDF(output_file)
