@@ -21,14 +21,14 @@ There are 4 major modules in this project - lexerGenerator, parserGenerator, pdf
 - To start the script - `python3 run.py <flp file> <output pdf>`
 
 ## Statement Syntax
-exec ( for(1, 4) initImage(0, 100, 50, 50) scale(1.1) shift(5, 0) kid.png )
+**exec ( for(1, 4) initImage(0, 100, 50, 50) scale(1.1) shift(5, 0) kid.png )**
 ### Method Syntax
 - `exec` - parent method which executes the statement written inside it
-- for(startIdx, endIdx) - defines the number of pages the images should be printed on
-- initImage(x, y, szX, szY) - defines the initial position and size of the image
-- scale(value) - defines the scale update to make at each page
-- shift(x, y) - shifts the image from initial position on each subsequent page
-- <imageFile> - defines the image to be used for current statement
+- `for(startIdx, endIdx)` - defines the number of pages the images should be printed on
+- `initImage(x, y, szX, szY)` - defines the initial position and size of the image
+- `scale(value)` - defines the scale update to make at each page
+- `shift(x, y)` - shifts the image from initial position on each subsequent page
+- `<imageFile>` - defines the image to be used for current statement
 
 ## Sample Outputs(Converted to gif from pdf for better visualization)
 
