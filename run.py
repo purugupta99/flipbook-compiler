@@ -4,11 +4,14 @@ from pdfMaker import PDFMaker
 
 import sys
 
+# Read arguments for input/output file names
 input_file = sys.argv[1]
 output_file = sys.argv[2]
 
+# Instantiate a PDFMaker Object
 pdfMaker = PDFMaker()
 
+# Read input flp file 
 with open(input_file) as f:
     lines = f.read().splitlines()
 
@@ -22,7 +25,7 @@ with open(input_file) as f:
         parser = parserObj.make_parser()
         node = parser.parse(tokens)
 
-        print(node.eval())
+        # print(node.eval())
         pdfMaker.add_statement(node)
 
     pdfMaker.generate_instructions()

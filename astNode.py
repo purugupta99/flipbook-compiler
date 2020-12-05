@@ -1,5 +1,7 @@
 from rply.token import BaseBox
 
+# This module contains the class definitions of different types of AST nodes
+
 class Integer(BaseBox):
     def __init__(self, value):
         self.value = value
