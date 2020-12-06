@@ -9,7 +9,7 @@ input_file = sys.argv[1]
 output_file = sys.argv[2]
 
 # Instantiate a PDFMaker Object
-pdfMaker = PDFMaker()
+pdfMaker = PDFMaker(output_file)
 
 # Read input flp file 
 with open(input_file) as f:
@@ -30,4 +30,4 @@ with open(input_file) as f:
 
     pdfMaker.generate_instructions()
     # pdfMaker.print_instructions()
-    pdfMaker.generate_PDF(output_file)
+    pdfMaker.generate_PDF()

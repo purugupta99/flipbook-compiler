@@ -1,3 +1,5 @@
 rply
 pyPDF2
 fpdf
+PyMuPDF
+Pillow
