@@ -1,8 +1,9 @@
 from PyPDF2 import PdfFileMerger
 from fpdf import FPDF
-import fitz # PyMuPDF
+import fitz
 import imageio
 import time
+from datetime import datetime
 
 import os
 
@@ -18,6 +19,14 @@ class PDFMaker():
         self.imageDir = "./images/"
         self.filename = filename
         self.frames = []
+
+        now = datetime.now()
+        self.dt_string = now.strftime("%d-%m-%Y-%H-%M-%S")
+
+        self.create_output_dir()
+
+    def create_output_dir(self):
+        os.makedirs("./frames/" + self.dt_string)
         
     def add_statement(self, statementNode):
         '''
@@ -38,6 +47,8 @@ class PDFMaker():
         '''
             Generate pdf generation instructions for each page
         '''
+
+        print("Generating instructions from parsed file")
         for statement in self.statements:
             valList = statement.eval()
 
@@ -66,6 +77,8 @@ class PDFMaker():
         '''
             Generate PDF from the instructions created
         '''
+
+        print("Generating PDF")
         pdfMerger = PdfFileMerger()
         
         for i in range(1, self.maxPage+1):
@@ -81,22 +94,33 @@ class PDFMaker():
 
             os.remove(self.filename)
 
-        with open(self.filename, 'wb') as f:
+        with open("./frames/" + self.dt_string + "/" + self.filename, 'wb') as f:
             pdfMerger.write(f)
 
     def extract_images(self):
-        pdf_file = fitz.open(self.filename)
+        '''
+            Extract pdf pages as image files
+        '''
+
+        print("Extracting frames from PDF")
+        pdf_file = fitz.open("./frames/" + self.dt_string + "/" + self.filename)
 
         for page_index in range(len(pdf_file)):
             page = pdf_file.loadPage(page_index)  # number of page
             pix = page.getPixmap()
-            output = "./frames/out_" + str(page_index) + ".png"
+            output = "./frames/" + self.dt_string + "/out_" + str(page_index) + ".png"
 
             self.frames.append(output)
             pix.writePNG(output)
 
     def generate_GIF(self):
-        with imageio.get_writer('./frames/movie.gif', mode='I') as writer:
+        '''
+            Generate gif from the extracted frames
+        '''
+        
+        print("Generating GIF movie file")
+        with imageio.get_writer("./frames/" + self.dt_string + "/movie.gif", mode='I') as writer:
             for filename in self.frames:
                 image = imageio.imread(filename)
                 writer.append_data(image)
+                os.remove(filename)

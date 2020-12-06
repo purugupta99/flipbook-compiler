@@ -2,7 +2,10 @@ from lexerGenerator import Lexer
 from parserGenerator import Parser
 from pdfMaker import PDFMaker
 
-import sys
+import sys, os
+
+if not os.path.exists('frames'):
+    os.makedirs('frames')
 
 # Read arguments for input/output file names
 input_file = sys.argv[1]
@@ -31,5 +34,8 @@ with open(input_file) as f:
     pdfMaker.generate_instructions()
     # pdfMaker.print_instructions()
     pdfMaker.generate_PDF()
-    pdfMaker.extract_images()
-    pdfMaker.generate_GIF()
+
+    if len(sys.argv) == 4: 
+        if sys.argv[3] == "--gif":
+            pdfMaker.extract_images()
+            pdfMaker.generate_GIF()
