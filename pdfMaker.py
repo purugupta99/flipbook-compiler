@@ -1,8 +1,7 @@
 from PyPDF2 import PdfFileMerger
 from fpdf import FPDF
 import fitz # PyMuPDF
-import io
-from PIL import Image
+import imageio
 import time
 
 import os
@@ -18,6 +17,7 @@ class PDFMaker():
         self.maxPage = 0
         self.imageDir = "./images/"
         self.filename = filename
+        self.frames = []
         
     def add_statement(self, statementNode):
         '''
@@ -88,23 +88,15 @@ class PDFMaker():
         pdf_file = fitz.open(self.filename)
 
         for page_index in range(len(pdf_file)):
-            # get the page itself
-            page = pdf_file[page_index]
-            image_list = page.getImageList()
-            # printing number of images found in this page
-            if image_list:
-                print(f"[+] Found a total of {len(image_list)} images in page {page_index}")
-            else:
-                print("[!] No images found on page", page_index)
-            for image_index, img in enumerate(page.getImageList(), start=1):
-                # get the XREF of the image
-                xref = img[0]
-                # extract the image bytes
-                base_image = pdf_file.extractImage(xref)
-                image_bytes = base_image["image"]
-                # get the image extension
-                image_ext = base_image["ext"]
-                # load it to PIL
-                image = Image.open(io.BytesIO(image_bytes))
-                # save it to local disk
-                image.save(open(f"image{page_index+1}_{image_index}.{image_ext}", "wb"))
+            page = pdf_file.loadPage(page_index)  # number of page
+            pix = page.getPixmap()
+            output = "./frames/out_" + str(page_index) + ".png"
+
+            self.frames.append(output)
+            pix.writePNG(output)
+
+    def generate_GIF(self):
+        with imageio.get_writer('./frames/movie.gif', mode='I') as writer:
+            for filename in self.frames:
+                image = imageio.imread(filename)
+                writer.append_data(image)

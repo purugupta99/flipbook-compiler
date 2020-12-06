@@ -31,3 +31,5 @@ with open(input_file) as f:
     pdfMaker.generate_instructions()
     # pdfMaker.print_instructions()
     pdfMaker.generate_PDF()
+    pdfMaker.extract_images()
+    pdfMaker.generate_GIF()
